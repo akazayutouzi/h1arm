@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MJCF model generated from robot.urdf. All distances are in metres and angles in radians. -->
+<mujoco model="h1arm_gripper">
+  <!-- URDF rpy uses fixed-axis XYZ rotations. -->
+  <compiler angle="radian" eulerseq="XYZ" meshdir="meshes"/>
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast"/>
+
+  <default>
+    <joint damping="1" armature="0.01" limited="true"/>
+    <geom type="mesh" contype="1" conaffinity="1" friction="0.8 0.01 0.001" rgba="0.72 0.72 0.76 1"/>
+    <!-- Per-joint servo gains and force limits are set in <actuator>. -->
+    <position forcelimited="true"/>
+  </default>
+
+  <asset>
+    <mesh name="base_link_mesh" file="base_link.stl"/>
+    <mesh name="Link_1_mesh" file="Link_1.stl"/>
+    <mesh name="Link_2_mesh" file="Link_2.stl"/>
+    <mesh name="Link_3_mesh" file="Link_3.stl"/>
+    <mesh name="Link_4_mesh" file="Link_4.stl"/>
+    <mesh name="Link_5_mesh" file="Link_5.stl"/>
+    <mesh name="Link_6_mesh" file="Link_6.stl"/>
+    <mesh name="Link_7_mesh" file="Link_7.stl"/>
+    <mesh name="Link_ee_mesh" file="Link_ee.stl"/>
+    <mesh name="Link_12_mesh" file="Link_12.stl"/>
+    <mesh name="Link_13_mesh" file="Link_13.stl"/>
+  </asset>
+
+  <worldbody>
+    <!-- The base is fixed to world. Add <freejoint/> here for a floating-base model. -->
+    <body name="base_link">
+      <inertial pos="0.0000558 -0.00005184 0.03162308" mass="0.69162878"
+                fullinertia="0.0008996 0.00061988 0.00106115 0.00000037 0.0000008 -0.0000044"/>
+      <geom mesh="base_link_mesh"/>
+      <body name="Link_1" pos="0 -0.00001092 0.0566">
+        <joint name="Joint_1" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+        <inertial pos="-0.00939786 0.0000704 0.03350522" mass="0.48230711"
+                  fullinertia="0.00091496 0.00058896 0.00073282 0.00000048 0.00012968 -0.0000012"/>
+        <geom mesh="Link_1_mesh"/>
+        <body name="Link_2" pos="-0.0235 0.0325 0.069" euler="-1.57079633 0 0">
+          <joint name="Joint_2" type="hinge" axis="0 0 1" range="-1.571 1.571"/>
+          <inertial pos="0.00000532 -0.06379929 -0.03408965" mass="1.94611811"
+                    fullinertia="0.01118348 0.0017217 0.01120132 0.00000311 0.00000061 0.00019674"/>
+          <geom mesh="Link_2_mesh"/>
+          <body name="Link_3" pos="-0.00000018 -0.173 -0.03249939" euler="1.57079633 0 0">
+            <joint name="Joint_3" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+            <inertial pos="-0.00002259 -0.00043766 0.09074299" mass="1.01676546"
+                      fullinertia="0.00170773 0.00150816 0.00061728 0.00000044 0.00000039 0.00000773"/>
+            <geom mesh="Link_3_mesh"/>
+            <body name="Link_4" pos="0 -0.031 0.108" euler="1.57079633 0 0">
+              <joint name="Joint_4" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+              <inertial pos="-0.05223196 0.08041667 -0.03084671" mass="1.31493568"
+                        fullinertia="0.00256753 0.00083187 0.00261887 0.00044865 -0.00000907 0.00001387"/>
+              <geom mesh="Link_4_mesh"/>
+              <body name="Link_5" pos="-0.0570187 0.13799997 -0.031" euler="-1.57079633 0 0">
+                <joint name="Joint_5" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+                <inertial pos="-0.00002277 -0.00013572 0.07326344" mass="1.03123423"
+                          fullinertia="0.00138155 0.00137365 0.00036176 0.00000043 0.00000058 -0.00001051"/>
+                <geom mesh="Link_5_mesh"/>
+                <body name="Link_6" pos="0 -0.0235 0.098" euler="1.57079633 0 0">
+                  <joint name="Joint_6" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+                  <inertial pos="-0.00011233 0.06329954 -0.02121872" mass="0.888259"
+                            fullinertia="0.00068987 0.00050599 0.00074389 0.00002087 -0.00000023 0.00010841"/>
+                  <geom mesh="Link_6_mesh"/>
+                  <body name="Link_7" pos="-0.0325 0.07046661 -0.0235" euler="-1.57079633 0 1.57079633">
+                    <joint name="Joint_7" type="hinge" axis="0 0 1" range="-3.14159 3.14159"/>
+                    <inertial pos="0.02413322 0 -0.01539933" mass="0.09346317"
+                              fullinertia="0.0000561 0.00006109 0.00003789 0 0.00001734 0"/>
+                    <geom mesh="Link_7_mesh"/>
+                    <body name="Link_ee" pos="0.037 0 -0.0325" euler="-1.57079633 0 -1.57079633">
+                      <inertial pos="-0.00003041 0.00463951 -0.10312018" mass="2.29846423"
+                                fullinertia="0.06158132 0.05976071 0.00306785 0.00000481 -0.00000279 0.008958"/>
+                      <geom mesh="Link_ee_mesh"/>
+                      <body name="Link_tool" pos="0 0 0.134" euler="0 -1.57 1.57079633">
+                        <site name="tool_center" type="sphere" size="0.006" rgba="0 0.8 0 1"/>
+                        <body name="Link_12" pos="-0.06248011 -0.02843143 -0.02504976" euler="1.57 -0.00079633 0">
+                          <joint name="gripper1" type="slide" axis="0 0 1" range="-0.021 0.04" damping="5" armature="0.001"/>
+                          <inertial pos="0.00287554 0.02840234 0.00516111" mass="0.11778883"
+                                    fullinertia="0.00005212 0.00007215 0.00006361 0.00000733 0.00000375 0.00000348"/>
+                          <geom mesh="Link_12_mesh"/>
+                        </body>
+                        <body name="Link_13" pos="-0.06251993 0.02843143 0.02495022" euler="1.57 0.00079633 3.14159265">
+                          <joint name="gipper2" type="slide" axis="0 0 1" range="-0.021 0.04" damping="5" armature="0.001"/>
+                          <inertial pos="-0.00276631 -0.02843533 0.00553903" mass="0.11903541"
+                                    fullinertia="0.00005105 0.00007105 0.00006395 0.00000747 -0.00000485 -0.00000314"/>
+                          <geom mesh="Link_13_mesh"/>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <!-- The two opposing fingers move by the same joint coordinate. -->
+  <equality>
+    <joint joint1="gripper1" joint2="gipper2" polycoef="0 1 0 0 0"/>
+  </equality>
+
+  <actuator>
+    <position name="Joint_1_position" joint="Joint_1" ctrlrange="-3.14159 3.14159" kp="100" forcerange="-30 30"/>
+    <position name="Joint_2_position" joint="Joint_2" ctrlrange="-1.571 1.571" kp="350" forcerange="-80 80"/>
+    <position name="Joint_3_position" joint="Joint_3" ctrlrange="-3.14159 3.14159" kp="250" forcerange="-45 45"/>
+    <position name="Joint_4_position" joint="Joint_4" ctrlrange="-3.14159 3.14159" kp="250" forcerange="-45 45"/>
+    <position name="Joint_5_position" joint="Joint_5" ctrlrange="-3.14159 3.14159" kp="150" forcerange="-20 20"/>
+    <position name="Joint_6_position" joint="Joint_6" ctrlrange="-3.14159 3.14159" kp="150" forcerange="-20 20"/>
+    <position name="Joint_7_position" joint="Joint_7" ctrlrange="-3.14159 3.14159" kp="100" forcerange="-15 15"/>
+    <position name="gripper_position" joint="gripper1" ctrlrange="-0.021 0.04" kp="500" forcerange="-100 100"/>
+  </actuator>
+</mujoco>
